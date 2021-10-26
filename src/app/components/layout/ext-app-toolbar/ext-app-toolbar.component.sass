@@ -1,0 +1,93 @@
+@import './src/styles.sass'
+
+button
+    @include clearButton()
+
+.mat-toolbar
+    @include ph(7em, 5em)
+    height: 64px
+    position: fixed
+    z-index: 100
+    overflow-x: 0
+    overflow-y: 0
+    top: 0
+    background-color: $base-color
+    box-shadow: rgba(#000000, 0.1) 0px 4px 11px
+    @media screen and ( max-width: $tablet )
+        @include ph(1em, 1em)
+
+    .left-side
+        height: 100% !important
+        @include flex(row, center)
+        span
+            font-family: $generic-font
+            font-size: 24px
+            margin-right: 2em
+            align-self: center
+            cursor: pointer
+            @media screen and ( max-width: $phone )
+                font-size: 16px
+
+.center-side
+    width: 100%
+    @include flex(row, center)
+    .mat-form-field
+        width: 600px
+        align-self: center
+        font-family: $generic-font
+        color: $secundary-color
+        font-size: 16px
+        @media screen and ( max-width: $tablet )
+            width: 350px
+        @media screen and ( max-width: $phone )
+            width: 200px
+        .icon-placeholder
+            margin-right: 16px
+            cursor: pointer
+
+.right-side
+    height: 100%
+    @include flex(row, center)
+    button
+        align-self: center !important
+        margin-right: 2em
+        font-family: $generic-font
+        font-size: 16px
+        font-weight: normal
+        @media screen and ( max-width: $phone )
+            margin-right: 16px
+        p
+            margin-bottom: 0px
+            @media screen and ( max-width: $phone )
+                font-size: 12px
+        i
+            font-size: 24px
+            @media screen and ( max-width: $phone )
+                @include mh(2px, 4px)
+.avatar-container
+    align-self: center !important
+    @include mh(16px, null)
+    button
+    .avatar-img
+        vertical-align: middle
+        width: 33px
+        height: 33px
+        margin-bottom: 8px
+        border-radius: 50%
+        @media screen and ( max-width: $phone )
+            @include mh(8px, 18px)
+::ng-deep .mat-menu-content
+    padding-top: 1.5rem
+    @include flex(column, null)
+    overflow: hidden !important
+    @media screen and ( max-width: $phone )
+        @include mh(null,16px)
+    button:focus
+        outline: 0
+    button
+        @include pv(4px, 4px)
+        @include ph(14px, 10px)
+    i
+        font-size: 16px
+        @include ph(4px, 10px)
+        margin-right: 4px

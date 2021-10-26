@@ -1,0 +1,63 @@
+<mat-toolbar fxLayout="row" fxLayoutAlign="start start">
+  <div class="left-side">
+    <span (click)="goHome()">APRUMED</span>
+  </div>
+  <!-- <div class="center-side">
+    <mat-form-field floatLabel="never" class="search-input">
+      <mat-icon
+        matSuffix
+        class="icon-placeholder"
+        (click)="searchLibros($event)"
+        ><i class="fa fa-search" aria-hidden="true"></i
+      ></mat-icon>
+      <input
+        matInput
+        placeholder="Buscar libros"
+        [(ngModel)]="searchParam"
+        (keyup)="searchLibros($event)"
+      />
+    </mat-form-field>
+  </div> -->
+  <span fxFlex></span>
+  <div class="right-side">
+    <button (click)="openCartDialog()" *ngIf="user !== null">
+      <i
+        [matBadge]="items"
+        matBadgeColor="warn"
+        matBadgeSize="medium"
+        class="fa fa-cart-arrow-down"
+        aria-hidden="true"
+      ></i>
+    </button>
+    <button [routerLink]="['/login']" *ngIf="user === null">
+      <p>Iniciar sesión</p>
+    </button>
+
+    <div class="avatar-container" *ngIf="user !== null">
+      <button [matMenuTriggerFor]="menuAvatar">
+        <img
+          src="{{ user.avatar.url }}"
+          alt="{{ user.avatar.nombreAvatar }}"
+          class="avatar-img"
+        />
+      </button>
+
+      <mat-menu #menuAvatar="matMenu" xPosition="before">
+        <!-- <button mat-menu-item>
+          <i class="fa fa-user" aria-hidden="true"></i>Perfil
+        </button> -->
+        <button
+          mat-menu-item
+          [routerLink]="['/admin/books']"
+          *ngIf="user.tipoUsuario.tipoUsuarioID === 2"
+          disableRipple
+        >
+          <i class="fa fa-tachometer" aria-hidden="true"></i>Ir al dashboard
+        </button>
+        <button mat-menu-item (click)="signOut()" disableRipple>
+          <i class="fa fa-sign-out" aria-hidden="true"></i>Cerrar sesión
+        </button>
+      </mat-menu>
+    </div>
+  </div>
+</mat-toolbar>

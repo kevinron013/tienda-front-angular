@@ -1,0 +1,232 @@
+<style>
+  .invalid-feedback {
+    display: block;
+  }
+  .contenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .download {
+    color: #000000;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+  }
+  a {
+    text-decoration: underline;
+    color: #000000;
+  }
+  a[type="button"] {
+    all: unset;
+    cursor: pointer;
+    margin-left: 16px;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  input[type="file"] {
+    margin-top: 4px;
+    -webkit-appearance: textfield;
+  }
+  input[type="file"]::-webkit-file-upload-button {
+    -webkit-appearance: textarea;
+    border: none;
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: none;
+    width: 0;
+  }
+  x::-webkit-file-upload-button,
+  input[type="file"]:after {
+    content: "Browse...";
+    display: inline-block;
+    left: 100%;
+    margin-left: 3px;
+    padding: 3px 8px 2px;
+    position: relative;
+    -webkit-appearance: button;
+  }
+
+  .portrait {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+  }
+  .portrait img {
+    height: 224px;
+    width: 224px;
+    align-self: center;
+  }
+  .progressContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+</style>
+<h1 mat-dialog-title>Editar: {{ usuario.nombre }}</h1>
+<div style="display: flex; flex-direction: row">
+  <div style="width: 70%">
+    <form [formGroup]="form">
+      <div mat-dialog-content>
+        <mat-form-field style="width: 100%">
+          <mat-label>Nombre(s)</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="nombre"
+            placeholder="Ingrese su nombre"
+            [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }"
+          />
+          <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+            <div *ngIf="f.nombre.errors.required">Este campo es requerido</div>
+          </div>
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <mat-label>Apellidos</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="apellido"
+            placeholder="Ingrese sus apellidos"
+            [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }"
+          />
+          <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+            <div *ngIf="f.apellido.errors.required">
+              Este campo es requerido
+            </div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field style="width: 100%">
+          <mat-label>Teléfono</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="telefono"
+            placeholder="Ingrese su número de teléfono"
+            [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }"
+          />
+          <div *ngIf="submitted && f.telefono.errors" class="invalid-feedback">
+            <div *ngIf="f.telefono.errors.required">
+              Este campo es requerido
+            </div>
+          </div>
+        </mat-form-field>
+        <mat-form-field>
+          <mat-label>Tipo de usuario</mat-label>
+          <mat-select formControlName="tipoUsuarioID">
+            <mat-option
+              *ngFor="let tipoUsuario of tiposUsuario"
+              [value]="tipoUsuario.tipoUsuarioID"
+              >{{ tipoUsuario.nombreTipoUsuario }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <mat-form-field style="width: 100%">
+          <mat-label>Email</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="email"
+            placeholder="Ingrese el email"
+            [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+          />
+          <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+            <div *ngIf="f.email.errors.required">Este campo es requerido</div>
+            <div *ngIf="f.precio.errors.email">
+              Por favor ingrese un email válido
+            </div>
+          </div>
+        </mat-form-field>
+
+        <mat-form-field>
+          <mat-label>Sexo</mat-label>
+          <mat-select formControlName="sexo">
+            <mat-option *ngFor="let item of sexos" [value]="item"
+              >{{ item }}</mat-option
+            >
+          </mat-select>
+        </mat-form-field>
+        <mat-slide-toggle
+          [color]="color"
+          [checked]="isChecked()"
+          (change)="actualizarUsuario($event)"
+          style="margin-left: 32px"
+        >
+          Activo
+        </mat-slide-toggle>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button type="submit" cdkFocusInitial (click)="onSubmit()">
+          Guardar
+        </button>
+        <button mat-button (click)="onNoClick()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+  <div style="margin-left: 32px">
+    <div class="contenedor">
+      <div class="contenedor_formulario">
+        <h1
+          style="
+            font-family: 'Noto Sans', sans-serif;
+            font-size: 16px;
+            margin-left: 16px;
+          "
+        >
+          Subir imagen
+        </h1>
+
+        <img
+          *ngIf="usuario.avatar.url && !showPreview"
+          style="width: 200px; height: 200px"
+          src="{{ usuario.avatar.url }}"
+        />
+        <p class="download" *ngIf="finalizado">
+          URL de descarga:
+          <a href="{{ URLPublica }}" target="_blank">Descargar</a>
+        </p>
+
+        <form
+          [formGroup]="archivoForm"
+          (ngSubmit)="subirArchivo()"
+          style="margin-left: 16px"
+        >
+          <div class="file has-name is-boxed">
+            <label class="file-label">
+              <input
+                class="file-input"
+                type="file"
+                formControlName="archivo"
+                (change)="cambioArchivo($event)"
+              />
+            </label>
+          </div>
+          <hr />
+          <div *ngIf="isProgress" class="progressContainer">
+            <mat-progress-spinner
+              [value]="porcentaje"
+              [mode]="mode"
+              [diameter]="diameter"
+              [color]="color"
+            ></mat-progress-spinner>
+          </div>
+
+          <a type="button" *ngIf="finalizado" (click)="setShowPreview()">
+            <i class="fa fa-eye" aria-hidden="true"></i>
+            Vista previa
+          </a>
+        </form>
+      </div>
+      <div class="portrait" *ngIf="showPreview">
+        <img src="{{ URLPublica }}" alt="portrait" />
+      </div>
+    </div>
+  </div>
+</div>

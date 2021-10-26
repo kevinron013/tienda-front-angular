@@ -1,0 +1,77 @@
+@import './src/styles.sass'
+
+
+.new-book-container
+    width: 70%
+    font-family: $generic-font
+    h2
+        margin-bottom: 16px
+
+    .newbook-wrapper
+        display: flex
+        flex-wrap: wrap-reverse
+        .book-info
+            max-width: 430px
+            padding-right: 1rem
+
+.invalid-feedback
+    display: block
+
+.contenedor
+    @include flex(column, center)
+    align-items: center
+
+.download
+    color: #000000
+    padding: 10px 20px
+    margin-bottom: 20px
+
+a
+    text-decoration: underline
+    color: #000000
+
+a[type="button"]
+    all: unset
+    cursor: pointer
+    margin-left: 16px
+    font-family: "Noto Sans", sans-serif
+    font-size: 14px
+    font-weight: 500
+
+input[type="file" i]
+    border: 0px !important
+
+.portrait
+    width: 100%
+    @include flex(null, center)
+    margin-top: 16px
+    img
+        height: 224px
+        width: 224px
+        align-self: center
+
+.progressContainer
+    width: 100%
+    @include flex(null, center)
+    @include mv(16px, 16px)
+
+input[type="file"]
+    margin-top: 4px
+    -webkit-appearance: textfield
+
+input[type="file"]::-webkit-file-upload-button
+    -webkit-appearance: textarea
+    border: none
+    margin: 0
+    padding: 0
+    -webkit-appearance: none
+    width: 0
+
+    x::-webkit-file-upload-button,input[type="file"]:after
+    content: "Browse..."
+    display: inline-block
+    left: 100%
+    margin-left: 3px
+    padding: 3px 8px 2px
+    position: relative
+    -webkit-appearance: button

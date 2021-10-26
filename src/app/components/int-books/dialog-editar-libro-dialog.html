@@ -1,0 +1,300 @@
+<style>
+  .invalid-feedback {
+    display: block;
+  }
+  .contenedor {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .no-image-message {
+    display: none;
+  }
+
+  @media screen and (max-width: 880px) {
+    .contenedor_formulario {
+      display: none;
+    }
+    .no-image-message {
+      display: block;
+      padding: 1rem 0;
+    }
+  }
+
+  .download {
+    color: #000000;
+    padding: 10px 20px;
+    margin-bottom: 20px;
+  }
+  a {
+    text-decoration: underline;
+    color: #000000;
+  }
+  a[type="button"] {
+    all: unset;
+    cursor: pointer;
+    margin-left: 16px;
+    font-family: "Noto Sans", sans-serif;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .file-label {
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    margin-bottom: 32px;
+    font-size: 36px;
+  }
+
+  input[type="file"] {
+    margin-top: 4px;
+    padding-top: 50px;
+    padding-bottom: 40px;
+    -webkit-appearance: textfield;
+    top: 215px;
+  }
+
+  input[type="file"].hide {
+    margin-top: 4px;
+    padding-top: 50px;
+    padding-bottom: 20px;
+    -webkit-appearance: textfield;
+    top: 460px;
+  }
+
+  input[type="file"].hide_wURL {
+    margin-top: 4px;
+    padding-top: 0px;
+    padding-bottom: 40px;
+    -webkit-appearance: textfield;
+    top: 275px;
+  }
+
+  input[type="file"]::-webkit-file-upload-button {
+    -webkit-appearance: textarea;
+    border: none;
+    margin: 0;
+    padding: 0;
+    -webkit-appearance: none;
+    width: 0;
+  }
+  x::-webkit-file-upload-button,
+  input[type="file"]:after {
+    content: "Coloca la imagen aquí";
+    display: block;
+    margin-top: 16px;
+    left: 100%;
+  }
+
+  x::-webkit-file-upload-button,
+  input[type="file"].hide:after {
+    content: "Coloca la imagen aquí";
+    display: none;
+    margin-top: 16px;
+    left: 100%;
+  }
+  x::-webkit-file-upload-button,
+  input[type="file"].hide_wURL:after {
+    content: "Coloca la imagen aquí";
+    display: none;
+    margin-top: 16px;
+    left: 100%;
+  }
+  .portrait {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    margin-bottom: 32px;
+  }
+  .portrait img {
+    height: 224px;
+    width: 224px;
+    align-self: center;
+  }
+  .progressContainer {
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    margin-top: 16px;
+    margin-bottom: 16px;
+  }
+</style>
+<h1 mat-dialog-title>Editar: {{ libro.titulo }}</h1>
+<div style="display: flex; flex-direction: column">
+  <div mat-dialog-content style="display: flex; flex-wrap: wrap-reverse">
+    <form [formGroup]="form" style="max-width: 340px; padding-right: 1rem">
+      <mat-form-field style="width: 100%">
+        <mat-label>Titulo</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="titulo"
+          placeholder="Ingrese el título"
+          [ngClass]="{ 'is-invalid': submitted && f.titulo.errors }"
+        />
+        <div *ngIf="submitted && f.titulo.errors" class="invalid-feedback">
+          <div *ngIf="f.titulo.errors.required">Este campo es requerido</div>
+        </div>
+      </mat-form-field>
+      <mat-form-field style="width: 100%">
+        <mat-label>Autor</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="autor"
+          placeholder="Ingrese el autor"
+          [ngClass]="{ 'is-invalid': submitted && f.autor.errors }"
+        />
+        <div *ngIf="submitted && f.autor.errors" class="invalid-feedback">
+          <div *ngIf="f.autor.errors.required">Este campo es requerido</div>
+        </div>
+      </mat-form-field>
+      <mat-form-field style="width: 100%">
+        <mat-label>Fecha de publicación</mat-label>
+        <input
+          matInput
+          type="date"
+          formControlName="fechaPublicacion"
+          placeholder="Ingrese la fecha de publicación"
+          [ngClass]="{ 'is-invalid': submitted && f.fechaPublicacion.errors }"
+        />
+        <div
+          *ngIf="submitted && f.fechaPublicacion.errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f.fechaPublicacion.errors.required">
+            Este campo es requerido
+          </div>
+        </div>
+      </mat-form-field>
+      <mat-form-field style="width: 100%">
+        <mat-label>ISBN</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="isbn"
+          placeholder="Ingrese el ISBN"
+          [ngClass]="{ 'is-invalid': submitted && f.isbn.errors }"
+        />
+        <div *ngIf="submitted && f.isbn.errors" class="invalid-feedback">
+          <div *ngIf="f.isbn.errors.required">Este campo es requerido</div>
+        </div>
+      </mat-form-field>
+      <mat-form-field style="width: 100%">
+        <mat-label>Precio</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="precio"
+          placeholder="Ingrese el precio"
+          [ngClass]="{ 'is-invalid': submitted && f.precio.errors }"
+        />
+        <div *ngIf="submitted && f.precio.errors" class="invalid-feedback">
+          <div *ngIf="f.precio.errors.required">Este campo es requerido</div>
+          <div *ngIf="f.precio.errors.pattern">
+            Por favor ingrese un precio válido
+          </div>
+        </div>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Categoria</mat-label>
+        <mat-select formControlName="categoriaID">
+          <mat-option
+            *ngFor="let categoria of categorias"
+            [value]="categoria.categoriaID"
+            >{{ categoria.nombreCategoria }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <mat-slide-toggle
+        [color]="color"
+        [checked]="isChecked()"
+        (change)="actualizarLibro($event)"
+        style="margin-left: 32px"
+      >
+        Activo
+      </mat-slide-toggle>
+    </form>
+
+    <div>
+      <div class="contenedor">
+        <div class="no-image-message">
+          Ingrese a la versión de escritorio para agregar una imagen
+        </div>
+        <div class="contenedor_formulario">
+          <h1
+            style="
+              font-family: 'Noto Sans', sans-serif;
+              font-size: 16px;
+              margin-left: 16px;
+            "
+          >
+            Subir imagen
+          </h1>
+          <p class="download" *ngIf="finalizado">
+            URL de descarga:
+            <a href="{{ URLPublica }}" target="_blank">Descargar</a>
+          </p>
+
+          <form
+            [formGroup]="archivoForm"
+            (ngSubmit)="subirArchivo()"
+            style="margin-left: 16px"
+          >
+            <div class="file has-name is-boxed">
+              <label class="file-label" *ngIf="!showPreview">
+                <img
+                  *ngIf="libro.portada.url"
+                  style="width: 200px; height: 200px"
+                  src="{{ libro.portada.url }}"
+                />
+                <i
+                  *ngIf="!libro.portada.url"
+                  class="fa fa-image"
+                  aria-hidden="true"
+                ></i>
+              </label>
+              <div class="portrait" *ngIf="showPreview">
+                <img src="{{ URLPublica }}" alt="portrait" />
+              </div>
+              <input
+                [ngClass]="{'hide_wURL':URLPublica!=='' && !showPreview,'hide':showPreview}"
+                type="file"
+                formControlName="archivo"
+                (change)="cambioArchivo($event)"
+                style="
+                  display: flex;
+                  flex-direction: column;
+                  padding: 0;
+                  cursor: pointer;
+                "
+              />
+            </div>
+            <hr />
+            <div *ngIf="isProgress" class="progressContainer">
+              <mat-progress-spinner
+                [value]="porcentaje"
+                [mode]="mode"
+                [diameter]="diameter"
+                [color]="color"
+              ></mat-progress-spinner>
+            </div>
+
+            <a type="button" *ngIf="finalizado" (click)="setShowPreview()">
+              <i class="fa fa-eye" aria-hidden="true"></i>
+              Vista previa
+            </a>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button mat-button cdkFocusInitial (click)="onSubmit()">Guardar</button>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+  </div>
+</div>

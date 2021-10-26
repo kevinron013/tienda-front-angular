@@ -1,0 +1,33 @@
+@import './src/styles.sass'
+
+.base
+    max-width: 1240px
+    margin: 0 auto
+    display: flex
+    justify-content: center
+    align-items: center
+    // .books-container
+    //     width: 1240px !important
+    //     .categories
+    //         @include flex(column, null)
+
+.books-container
+    width: 100%
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(11rem, 1fr))
+    gap: 20px
+
+.noBooks
+    width: 100%
+    @include mv(24px, 24px)
+    @include flex(column, center)
+    align-items: center
+    font-family: $generic-font
+    span.sad
+        align-self: center
+        font-size: 36px
+    span.message
+        align-self: center
+        font-size: 1rem
+        font-weight: normal
+        max-width: 300px

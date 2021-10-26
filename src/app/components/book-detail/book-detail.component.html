@@ -1,0 +1,15 @@
+<h1 mat-dialog-title>{{ libro.titulo }}</h1>
+<div mat-dialog-content class="book-content">
+  <div class="book-info-wrapper">
+    <img
+      src="{{ libro.portada.url }}"
+      alt="{{ libro.portada.nombrePortada }}"
+      class="portada"
+    />
+    <span>{{ libro.autor }}</span>
+    <p>S/ {{ libro.precio }}</p>
+  </div>
+</div>
+<div mat-dialog-actions>
+  <button mat-button (click)="onNoClick()">Cerrar</button>
+</div>

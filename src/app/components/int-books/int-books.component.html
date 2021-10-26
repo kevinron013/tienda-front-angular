@@ -1,0 +1,101 @@
+<h1 class="title">Nuestros libros</h1>
+
+<div class="mat-elevation-z8">
+  <mat-form-field class="ml-4 mt-2 filtro">
+    <input
+      matInput
+      (keyup)="aplicarFiltro($event.target.value)"
+      placeholder="Filtrar"
+    />
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID.</th>
+      <td mat-cell *matCellDef="let element">{{ element.libroID }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="titulo">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Título</th>
+      <td mat-cell *matCellDef="let element">{{ element.titulo }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="autor">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Autor</th>
+      <td mat-cell *matCellDef="let element">{{ element.autor }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="fechapub">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>
+        Fecha de publicacion
+      </th>
+      <td mat-cell *matCellDef="let element">{{ element.fechaPublicacion }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="isbn">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ISBN</th>
+      <td mat-cell *matCellDef="let element">{{ element.isbn }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="stock">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Stock</th>
+      <td mat-cell *matCellDef="let element">{{ element.stock }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="categoria">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Categoria</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.categoria.nombreCategoria }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="precio">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Precio</th>
+      <td mat-cell *matCellDef="let element">{{ element.precio }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Estado</th>
+      <td mat-cell *matCellDef="let element">{{ element.estado }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="opciones">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button [matMenuTriggerFor]="menuOpciones">
+          <i class="fa fa-ellipsis-h" aria-hidden="true"></i>
+        </button>
+        <mat-menu #menuOpciones="matMenu" xPosition="before" class="menu-op">
+          <button
+            mat-menu-item
+            (click)="openAddEjemplarDialog(element.libroID, element.titulo)"
+            disableRipple
+          >
+            Agregar ejemplar
+          </button>
+          <button
+            mat-menu-item
+            (click)="openEjemplaresDialog(element.ejemplares)"
+            disableRipple
+          >
+            Ver ejemplares
+          </button>
+          <button
+            mat-menu-item
+            (click)="openEditLibroDialog(element)"
+            disableRipple
+          >
+            Editar
+          </button>
+        </mat-menu>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[10, 15, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

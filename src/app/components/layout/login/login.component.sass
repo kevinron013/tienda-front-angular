@@ -1,0 +1,49 @@
+@import './src/styles.sass'
+
+.content
+    margin-top: 64px !important
+    @include flex(column, null)
+    .title
+        width: 100%
+        @include flex(null, center)
+        @include mv(2em, 2em)
+        h1
+            font: $generic-font
+            font-weight: 400
+    .subtitle
+        display: flex
+        justify-content: center
+        width: 100%
+        p
+            align-self: center
+    .card-container
+        @include flex(null, center)
+
+        .mat-card
+            width: 540px
+            align-self: center
+            padding: 24px
+    .form-container
+        width: 100%
+        @include flex(column, center)
+        .login-container
+            width: 100%
+            @include flex(column, null)
+            align-self: center
+            .sign-up-msg
+                align-self: center
+                span
+                    margin-left: 8px
+                    cursor: pointer
+                span:hover
+                    text-decoration: underline
+            .pass-helper
+                align-self: center
+                font-size: 12px
+                cursor: pointer
+            .button-container
+                @include flex(null, center)
+                button
+                    width: 98px
+.invalid-feedback
+    display: block

@@ -1,0 +1,113 @@
+@import './src/styles.sass'
+
+button
+    @include clearButton()
+
+.mat-toolbar
+    position: fixed
+    z-index: 100
+    overflow-x: 0
+    overflow-y: 0
+    top: 0
+    background-color: $base-color
+    box-shadow: rgba(#000000, 0.1) 0px 4px 11px
+
+.mat-sidenav
+    width: 250px
+
+.circle
+    border-radius: 50%
+    height: 100px
+
+.no-shadow
+    box-shadow: none !important
+
+.list-item
+    font-size: 15px
+
+.mat-icon
+    margin-right: 4px !important
+
+::ng-deep .mat-drawer-inner-container
+    overflow-x: hidden !important
+    overflow-y: auto !important
+
+.sideNavExit
+    display: none
+    @media screen and ( max-width: $phone )
+        display: block
+
+.mat-list-item
+    a
+        width: 100%
+        font-size: 14px
+
+.mat-toolbar
+    position: fixed
+
+.left-side
+    height: 100% !important
+    @include flex(row, center)
+    span
+        font-family: $generic-font
+        font-size: 24px
+        @include mh(1em, null)
+        align-self: center
+        cursor: pointer
+        @media screen and ( max-width: $phone )
+            font-size: 16px
+
+.center-side
+    width: 100%
+    @include flex(row, center)
+    .mat-form-field
+        width: 600px
+        align-self: center
+        font-family: $generic-font
+        color: $secundary-color
+        font-size: 16px
+        @media screen and ( max-width: $tablet )
+            margin-left: 16px
+            width: 350px
+        @media screen and ( max-width: $phone )
+            margin-left: 16px
+            width: 200px
+        .icon-placeholder
+            margin-right: 16px
+            cursor: pointer
+
+.right-side
+    height: 100%
+    @include flex(row, center)
+    align-self: center !important
+    margin-right: 2em
+    font-family: $generic-font
+    font-size: 16px
+    @media screen and ( max-width: $tablet )
+        margin-right: 0px
+    @media screen and ( max-width: $phone )
+        margin-right: 0px
+    button
+        @include mh(16px, 16px)
+        i
+            font-size: 20px
+
+    .exit
+        font-weight: normal
+        @media screen and ( max-width: $phone )
+            font-size: 12px
+            
+::ng-deep .mat-menu-content
+    @include flex(column, null)
+    overflow: hidden !important
+    @media screen and ( max-width: $phone )
+        @include mh(null,16px)
+    button:focus
+        outline: 0
+    button
+        @include pv(4px, 4px)
+        @include ph(14px, 10px)
+
+.content
+    @include mh(65px, 65px)
+    @include mv(96px, 40px)

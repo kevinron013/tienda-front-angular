@@ -1,0 +1,35 @@
+@import './src/styles.sass'
+
+.new-user-container
+    width: 100%
+    font-family: $generic-font
+    h2
+        margin-bottom: 16px
+
+.invalid-feedback
+    display: block
+
+.contenedor
+    @include flex(column, center)
+    align-items: center
+
+.download
+    color: #000000
+    padding: 10px 20px
+    margin-bottom: 20px
+
+a
+    text-decoration: underline
+    color: #000000
+
+a[type="button"]
+    all: unset
+    cursor: pointer
+    margin-left: 16px
+    font-family: "Noto Sans", sans-serif
+    font-size: 14px
+    font-weight: 500
+
+input[type="file" i]
+    background-color: white !important
+    border: 0px !important

@@ -1,0 +1,55 @@
+@import './src/styles.sass'
+
+$novels-color: #B57DBF
+$filosofia-color: #BC6C75
+$sci-fy-color: #198182
+$infantil-color: #76AD6A
+$growth-color: #082F50
+$idiomas-color: #540206
+$educacion-color: #577164
+$peruana-color: #D50017
+
+.wrapper
+    max-width: 1240px
+    display: flex
+    justify-content: center
+    margin: 0 auto
+
+.categories-container
+    width: 100%
+    display: grid
+    grid-template-columns: repeat(auto-fill, minmax(8rem, 1fr))
+    gap: 20px
+
+::ng-deep .mat-chip-list
+    display: flex
+    justify-content: center
+    align-items: center
+
+.mat-chip
+    cursor: pointer
+    color: white
+
+.mat-chip#i_0
+    background-color: $novels-color
+
+.mat-chip#i_1
+    background-color: $sci-fy-color
+
+.mat-chip#i_2
+    background-color: $peruana-color
+
+.mat-chip#i_3
+    background-color: $infantil-color
+
+.mat-chip#i_4
+    background-color: $filosofia-color
+
+.mat-chip#i_5
+    background-color: $growth-color
+
+.mat-chip#i_6
+    background-color: $idiomas-color
+
+.mat-chip#i_7
+    background-color: $educacion-color

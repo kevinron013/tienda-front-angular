@@ -1,0 +1,69 @@
+<h1 mat-dialog-title>{{ data.titulo }}</h1>
+
+<div mat-dialog-content>
+  <mat-form-field
+    class="ml-4 mt-2"
+    style="width: 100%;
+  margin-left: 0px !important;
+  padding: 8px;"
+  >
+    <input
+      matInput
+      (keyup)="aplicarFiltro($event.target.value)"
+      placeholder="Filtrar"
+    />
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" matSort style="width: 100%;">
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID.</th>
+      <td mat-cell *matCellDef="let element">{{ element.ejemplarID }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="sku">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>SKU</th>
+      <td mat-cell *matCellDef="let element">{{ element.sku }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="estado">
+      <th mat-header-cell *matHeaderCellDef>Estado</th>
+      <td mat-cell *matCellDef="let element">
+        <mat-slide-toggle
+          [color]="color"
+          [checked]="isChecked(element)"
+          (change)="actualizarEjemplar($event, element)"
+          *ngIf="
+            element.estado !== 'Vendido' && element.estado !== 'En Carrito'
+          "
+        >
+        </mat-slide-toggle>
+        <div
+          *ngIf="
+            element.estado === 'Vendido' || element.estado === 'En Carrito'
+          "
+        >
+        <p *ngIf="element.estado === 'Vendido'">Vendido</p>
+        <p *ngIf="element.estado === 'En Carrito'">En Carrito</p>
+      </div>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[5, 10, 15, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+  <div mat-dialog-actions>
+    <button
+      mat-button
+      cdkFocusInitial
+      [mat-dialog-close]="GA"
+      (click)="deleteEjemplar()"
+    >
+      Guardar
+    </button>
+    <button mat-button (click)="onNoClick()">Cerrar</button>
+  </div>
+</div>

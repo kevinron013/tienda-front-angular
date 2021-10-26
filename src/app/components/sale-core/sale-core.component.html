@@ -1,0 +1,89 @@
+<h1 mat-dialog-title>Realizar compra</h1>
+<div mat-dialog-content>
+  <div class="sale-core-container">
+    <div class="store-location-container">
+      <div class="recep">
+        <h2>¿Quién recogerá el producto?</h2>
+        <form [formGroup]="form">
+          <mat-form-field style="width: 100%">
+            <mat-label>DNI</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="dni"
+              placeholder="Ingrese su DNI"
+              [ngClass]="{ 'is-invalid': submitted && f.dni.errors }"
+            />
+            <div *ngIf="submitted && f.dni.errors" class="invalid-feedback">
+              <div *ngIf="f.dni.errors.required">Este campo es requerido</div>
+              <div *ngIf="f.dni.errors.minlength">
+                Por favor ingrese un DNI válido
+              </div>
+            </div>
+          </mat-form-field>
+          <mat-form-field style="width: 100%">
+            <mat-label>Nombre(s)</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="nombre"
+              placeholder="Ingrese su nombre"
+              [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }"
+            />
+            <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+              <div *ngIf="f.nombre.errors.required">
+                Este campo es requerido
+              </div>
+            </div>
+          </mat-form-field>
+          <mat-form-field style="width: 100%">
+            <mat-label>Apellidos</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="apellido"
+              placeholder="Ingrese sus apellidos"
+              [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }"
+            />
+            <div
+              *ngIf="submitted && f.apellido.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.apellido.errors.required">
+                Este campo es requerido
+              </div>
+            </div>
+          </mat-form-field>
+          <mat-form-field style="width: 100%">
+            <mat-label>Teléfono</mat-label>
+            <input
+              matInput
+              type="text"
+              formControlName="telefono"
+              placeholder="Ingrese su número de teléfono"
+              [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }"
+            />
+            <div
+              *ngIf="submitted && f.telefono.errors"
+              class="invalid-feedback"
+            >
+              <div *ngIf="f.telefono.errors.required">
+                Este campo es requerido
+              </div>
+            </div>
+          </mat-form-field>
+        </form>
+      </div>
+    </div>
+    <div class="sale-detail-container">
+      <app-sale-detail
+        [ejemplares]="ejemplares"
+        [usuario]="usuario"
+      ></app-sale-detail>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="mat-dialog-footer" *ngIf="prodCantidad !== 0">
+    <span>Subtotal: S/. {{ subtotal }}</span>
+    <button mat-button (click)="doSale()">Realizar pago</button>
+</div>

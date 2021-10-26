@@ -1,0 +1,27 @@
+@import './src/styles.sass'
+
+button
+    @include clearButton()
+
+.title
+    width: 100%
+    text-align: center
+    margin-bottom: 30px
+    font-family: $generic-font
+
+table
+    width: 100%
+
+.filtro
+    width: 100%
+    margin-left: 0px !important
+    padding: 8px
+
+::ng-deep .mat-menu-content
+    @include flex(column, null)
+    overflow: hidden !important
+    button:focus
+        outline: 0
+    button
+        @include pv(4px, 4px)
+        @include ph(14px, 10px)

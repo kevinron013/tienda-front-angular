@@ -1,0 +1,42 @@
+<h1 mat-dialog-title>Editar: {{ categoria.nombreCategoria }}</h1>
+<div style="display: flex; flex-direction: row;">
+  <div style="width: 100%;">
+    <form [formGroup]="form">
+      <div mat-dialog-content>
+        <mat-form-field style="width: 100%;">
+          <mat-label>Nombre</mat-label>
+          <input
+            matInput
+            type="text"
+            formControlName="nombreCategoria"
+            placeholder="Ingrese el nombre de la categoria"
+            [ngClass]="{ 'is-invalid': submitted && f.nombreCategoria.errors }"
+          />
+          <div
+            *ngIf="submitted && f.nombreCategoria.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="f.nombreCategoria.errors.required">
+              Este campo es requerido
+            </div>
+          </div>
+        </mat-form-field>
+
+        <mat-slide-toggle
+          [color]="color"
+          [checked]="isChecked()"
+          (change)="actualizarCategoria($event)"
+          style="margin-top: 16px; margin-bottom: 16px;"
+        >
+          Activo
+        </mat-slide-toggle>
+      </div>
+      <div mat-dialog-actions>
+        <button mat-button type="submit" cdkFocusInitial (click)="onSubmit()">
+          Guardar
+        </button>
+        <button mat-button (click)="onNoClick()">Cancelar</button>
+      </div>
+    </form>
+  </div>
+</div>

@@ -1,0 +1,193 @@
+<mat-sidenav-container fullscreen class="contenedor">
+  <!--SIDENAV-->
+  <mat-sidenav
+    #sidenav
+    class="mat-elevation-z4"
+    mode="mode"
+    opened="false"
+    disableRipple
+  >
+    <div
+      class="my-2"
+      fxLayout="column"
+      fxLayoutAlign="center center"
+      fxLayoutGap="10px"
+    >
+      <div>
+        <a>
+          <img
+            class="circle"
+            src="{{ user.avatar.url }}"
+            alt="{{ user.avatar.nombreAvatar }}"
+            width="100"
+          />
+        </a>
+      </div>
+      <div
+        class="user-info"
+        fxLayout="column"
+        fxLayoutAlign="center center"
+        fxLayoutGap="7px"
+      >
+        <div>
+          <a>
+            <span class="lead">{{ nombres }}</span>
+          </a>
+        </div>
+        <div>
+          <a>
+            <span class="tipo">{{ user.tipoUsuario.nombreTipoUsuario }}</span>
+          </a>
+        </div>
+        <div>
+          <a>
+            <span class="email">{{ user.email }}</span>
+          </a>
+        </div>
+        <button (click)="signOut()" class="sideNavExit">Cerrar sesión</button>
+      </div>
+    </div>
+    <div class="mt-3">
+      <!-- <mat-nav-list>
+        <a mat-list-item class="list-item" (click)="sidenav.toggle()">
+          <mat-icon>dashboard</mat-icon> <span>Dashboard</span>
+        </a>
+      </mat-nav-list> -->
+      <mat-accordion multi="true" [displayMode]="displayMode">
+        <mat-expansion-panel class="no-shadow">
+          <mat-expansion-panel-header
+            fxLayout="row"
+            [expandedHeight]="expandHeight"
+            [collapsedHeight]="collapseHeight"
+          >
+            <mat-panel-title>
+              <mat-icon>my_library_books</mat-icon> Libros
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list class="ml-0" dense>
+            <mat-list-item>
+              <a [routerLink]="['books']" (click)="sidenav.toggle()"
+                >Ver libros</a
+              >
+            </mat-list-item>
+            <mat-list-item>
+              <a [routerLink]="['newBook']" (click)="sidenav.toggle()"
+                >Nuevo libro</a
+              >
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="no-shadow my-0">
+          <mat-expansion-panel-header
+            fxLayout="row"
+            [expandedHeight]="expandHeight"
+            [collapsedHeight]="collapseHeight"
+          >
+            <mat-panel-title>
+              <mat-icon>star</mat-icon> Categorias
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list class="ml-0" dense>
+            <mat-list-item>
+              <a [routerLink]="['categories']" (click)="sidenav.toggle()"
+                >Ver categorias</a
+              >
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-expansion-panel>
+        <mat-expansion-panel class="no-shadow my-0">
+          <mat-expansion-panel-header
+            fxLayout="row"
+            [expandedHeight]="expandHeight"
+            [collapsedHeight]="collapseHeight"
+          >
+            <mat-panel-title>
+              <mat-icon>group</mat-icon> Usuarios
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list class="ml-0" dense>
+            <mat-list-item>
+              <a [routerLink]="['users']" (click)="sidenav.toggle()"
+                >Ver usuarios</a
+              >
+            </mat-list-item>
+            <mat-list-item>
+              <a [routerLink]="['newUser']" (click)="sidenav.toggle()"
+                >Nuevo usuario</a
+              >
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-expansion-panel>
+        <!-- <mat-expansion-panel class="no-shadow my-0">
+          <mat-expansion-panel-header
+            fxLayout="row"
+            [expandedHeight]="expandHeight"
+            [collapsedHeight]="collapseHeight"
+          >
+            <mat-panel-title>
+              <mat-icon>show_chart</mat-icon> Ventas
+            </mat-panel-title>
+          </mat-expansion-panel-header>
+          <mat-nav-list class="ml-0" dense>
+            <mat-list-item>
+              <a [routerLink]="['sales']" (click)="sidenav.toggle()"
+                >Ver ventas</a
+              >
+            </mat-list-item>
+          </mat-nav-list>
+        </mat-expansion-panel> -->
+      </mat-accordion>
+    </div>
+  </mat-sidenav>
+  <!--SIDENAV-->
+
+  <!--SIDENAV-CONTENT-->
+  <mat-sidenav-content>
+    <!--NAVBAR-->
+    <mat-toolbar>
+      <button mat-icon-button (click)="sidenav.toggle()" disableRipple>
+        <mat-icon>menu</mat-icon>
+      </button>
+      <div class="left-side">
+        <span [routerLink]="['/']">APRUMED</span>
+      </div>
+      <!-- <div class="center-side">
+        <mat-form-field floatLabel="never" class="search-input">
+          <mat-icon matSuffix class="icon-placeholder"
+            ><i class="fa fa-search" aria-hidden="true"></i
+          ></mat-icon>
+          <input matInput placeholder="Buscar libros" />
+        </mat-form-field>
+      </div> -->
+
+      <span fxFlex></span>
+      <div class="right-side">
+        <!-- <button [matMenuTriggerFor]="menuNotifications">
+          <i
+            matBadge="9"
+            matBadgeColor="warn"
+            matBadgeSize="medium"
+            class="fa fa-bell"
+            aria-hidden="true"
+          ></i>
+        </button> -->
+        <mat-menu
+          #menuNotifications="matMenu"
+          xPosition="before"
+          class="menu-not"
+        >
+          <button mat-menu-item>Item 1</button>
+          <button mat-menu-item>Item 2</button>
+        </mat-menu>
+
+        <button (click)="signOut()" class="exit">Cerrar sesión</button>
+      </div>
+    </mat-toolbar>
+    <!--NAVBAR-->
+    <!--Here goes the router-->
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </mat-sidenav-content>
+  <!--SIDENAV-CONTENT-->
+</mat-sidenav-container>

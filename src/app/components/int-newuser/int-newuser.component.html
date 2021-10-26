@@ -1,0 +1,132 @@
+<div class="new-user-container">
+  <h2 class="title">Nuevo usuario</h2>
+  <form [formGroup]="form">
+    <div mat-dialog-content>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Nombre(s)</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="nombre"
+          placeholder="Ingrese su nombre"
+          [ngClass]="{ 'is-invalid': submitted && f.nombre.errors }"
+        />
+        <div *ngIf="submitted && f.nombre.errors" class="invalid-feedback">
+          <div *ngIf="f.nombre.errors.required">
+            Este campo es requerido
+          </div>
+        </div>
+      </mat-form-field>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Apellidos</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="apellido"
+          placeholder="Ingrese sus apellidos"
+          [ngClass]="{ 'is-invalid': submitted && f.apellido.errors }"
+        />
+        <div *ngIf="submitted && f.apellido.errors" class="invalid-feedback">
+          <div *ngIf="f.apellido.errors.required">
+            Este campo es requerido
+          </div>
+        </div>
+      </mat-form-field>
+
+      <mat-form-field style="width: 100%;">
+        <mat-label>Teléfono</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="telefono"
+          placeholder="Ingrese su número de teléfono"
+          [ngClass]="{ 'is-invalid': submitted && f.telefono.errors }"
+        />
+        <div *ngIf="submitted && f.telefono.errors" class="invalid-feedback">
+          <div *ngIf="f.telefono.errors.required">
+            Este campo es requerido
+          </div>
+        </div>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Tipo de usuario</mat-label>
+        <mat-select formControlName="tipoUsuarioID">
+          <mat-option
+            *ngFor="let tipoUsuario of tiposUsuario"
+            [value]="tipoUsuario.tipoUsuarioID"
+            >{{ tipoUsuario.nombreTipoUsuario }}</mat-option
+          >
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Email</mat-label>
+        <input
+          matInput
+          type="text"
+          formControlName="email"
+          placeholder="Ingrese el email"
+          [ngClass]="{ 'is-invalid': submitted && f.email.errors }"
+        />
+        <div *ngIf="submitted && f.email.errors" class="invalid-feedback">
+          <div *ngIf="f.email.errors.required">
+            Este campo es requerido
+          </div>
+          <div *ngIf="f.precio.errors.email">
+            Por favor ingrese un email válido
+          </div>
+        </div>
+      </mat-form-field>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Contraseña</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="usrPassword"
+          [ngClass]="{ 'is-invalid': submitted && f.usrPassword.errors }"
+          placeholder="Ingrese su contraseña"
+        />
+        <div *ngIf="submitted && f.usrPassword.errors" class="invalid-feedback">
+          <div *ngIf="f.usrPassword.errors.required">
+            Este campo es requerido
+          </div>
+          <div *ngIf="f.usrPassword.errors.minlength">
+            La contraseña debe contener al menos 6 caracteres
+          </div>
+        </div>
+      </mat-form-field>
+      <mat-form-field style="width: 100%;">
+        <mat-label>Confirmar contraseña</mat-label>
+        <input
+          matInput
+          type="password"
+          formControlName="confirmPassword"
+          [ngClass]="{ 'is-invalid': submitted && f.confirmPassword.errors }"
+        />
+        <div
+          *ngIf="submitted && f.confirmPassword.errors"
+          class="invalid-feedback"
+        >
+          <div *ngIf="f.confirmPassword.errors.required">
+            Por favor confirme la contraseña
+          </div>
+          <div *ngIf="f.confirmPassword.errors.mustMatch">
+            Las contraseñas deben coincidir
+          </div>
+        </div>
+      </mat-form-field>
+      <mat-form-field>
+        <mat-label>Sexo</mat-label>
+        <mat-select formControlName="sexo">
+          <mat-option *ngFor="let item of sexos" [value]="item">{{
+            item
+          }}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+    <div>
+      <button mat-button type="submit" cdkFocusInitial (click)="onSubmit()">
+        Guardar
+      </button>
+    </div>
+  </form>
+</div>

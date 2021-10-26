@@ -1,0 +1,36 @@
+<!-- <div class="base">
+  <div class="books-container">
+    <div class="categories">
+      <div
+        class="categorie-item"
+        *ngFor="let categorie of categories; let i = index"
+      >
+        <app-books-section [categoryId]="categorie.categoriaID">
+        </app-books-section>
+      </div>
+    </div>
+  </div>
+
+  <div class="noBooks" *ngIf="!booksLength">
+    <span class="sad">
+      😢
+    </span>
+    <span class="message">
+      ¡Lo sentimos! No hemos podido encontrar libros
+    </span>
+  </div>
+</div> -->
+
+<div class="base">
+  <div class="books-container" *ngIf="booksLength">
+    <div *ngFor="let ejemplar of ejemplares">
+      <app-book-card [ejemplar]="ejemplar"></app-book-card>
+    </div>
+  </div>
+  <div class="noBooks" *ngIf="!booksLength">
+    <span class="sad"> 😢 </span>
+    <span class="message">
+      ¡Lo sentimos! Al parecer hubo un problema al cargar los productos 
+    </span>
+  </div>
+</div>

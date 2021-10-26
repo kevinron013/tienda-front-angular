@@ -1,0 +1,46 @@
+<h1 class="title">Nuestras ventas</h1>
+
+<div class="mat-elevation-z8">
+  <mat-form-field class="ml-4 mt-2 filtro">
+    <input
+      matInput
+      (keyup)="aplicarFiltro($event.target.value)"
+      placeholder="Filtrar"
+    />
+  </mat-form-field>
+  <table mat-table [dataSource]="dataSource" matSort>
+    <ng-container matColumnDef="position">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>ID.</th>
+      <td mat-cell *matCellDef="let element">{{ element.ventaID }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="fecha">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Fecha de venta</th>
+      <td mat-cell *matCellDef="let element">{{ element.horaVenta }}</td>
+    </ng-container>
+
+    <ng-container matColumnDef="cliente">
+      <th mat-header-cell *matHeaderCellDef mat-sort-header>Cliente</th>
+      <td mat-cell *matCellDef="let element">
+        {{ element.usuario.nombre +" "+ element.usuario.apellido }}
+      </td>
+    </ng-container>
+
+    <ng-container matColumnDef="opciones">
+      <th mat-header-cell *matHeaderCellDef></th>
+      <td mat-cell *matCellDef="let element">
+        <button (click)="openDetalleDialog(element)">
+          Ver detalle
+        </button>
+      </td>
+    </ng-container>
+
+    <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+    <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+  </table>
+
+  <mat-paginator
+    [pageSizeOptions]="[10, 15, 20]"
+    showFirstLastButtons
+  ></mat-paginator>
+</div>

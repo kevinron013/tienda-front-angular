@@ -1,0 +1,54 @@
+
+//Sizes
+$phone: 375px
+$tablet: 768px
+$desktop: 1536px
+
+//Colors
+
+$base-color: #ffff
+$secundary-color: #000000
+$generic-font: "Noto Sans", sans-serif
+
+//Mixins
+
+@mixin fill()
+    width: 100%
+    height: 100%
+    margin: 0px
+    padding: 0px
+
+@mixin ph($left, $right)
+    padding-left: $left !important
+    padding-right: $right !important
+
+@mixin pv($top, $bottom)
+    padding-top: $top !important
+    padding-bottom: $bottom !important
+
+@mixin mh($left, $right)
+    margin-left: $left !important
+    margin-right: $right !important
+
+@mixin mv($top, $bottom)
+    margin-top: $top !important
+    margin-bottom: $bottom !important
+
+@mixin clearButton()
+    all: unset
+    cursor: pointer
+
+@mixin flex($direction, $justify)
+    display: flex
+    flex-direction: $direction
+    justify-content: $justify
+
+//Fonts
+    @import url("https://fonts.googleapis.com/css?family=Noto+Sans&display=swap")
+
+body
+    font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif
+    background-color: #fafafa !important
+
+.invalid-feedback
+    display: block

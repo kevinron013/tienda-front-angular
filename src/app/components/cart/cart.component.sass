@@ -1,0 +1,133 @@
+@import './src/styles.sass'
+
+.no-products
+    width: 100%
+    display: flex
+    justify-content: center
+    font-family: $generic-font
+    font-size: 20px
+
+.cart-component
+    @include flex(row,null)
+    @include fill()
+    justify-content: space-between
+    align-items: center
+    height: 60vh
+
+    .left-side
+        align-self: flex-start
+        max-height: 60vh
+        overflow-y: auto
+        padding-right: 1rem
+        @media screen and (max-width: 560px)
+            width: 100%
+            @include flex(column, center)
+            .cart-list
+                padding-left: 0
+        .cart-list
+            @include flex(column, null)
+            .cart-card
+                list-style: none
+                @include flex(column, center)
+                font-family: $generic-font
+                margin-top: 32px
+                background-color: #F8F8F8
+                @include pv(16px, 16px)
+                border-radius: 4px
+                @media screen and (max-width: 560px)
+                    background-color: transparent
+                    padding: 0
+                &__top
+                    font-size: 13px
+                    align-self: center
+                &__body
+                    @include fill()
+                    @include flex(null, center)
+                    @include mv(8px, 8px)
+                    img
+                        width: 180px
+                        height: 180px
+                        align-self: center
+                &__footer
+                    @include flex(row, space-around)
+                    @include mv(8px, 0px)
+                    .footer-left
+                        align-self: flex-start
+                        @include flex(row, null)
+                        .pill
+                            transition: box-shadow .3s
+                            width: 23px
+                            height: 23px
+                            @include flex(null, center)
+                            border: 1px solid
+                            border-radius: 50%
+                            background-color: #252525
+                            color: #ffffff
+                            cursor: pointer
+                            span
+                                font-size: 20px
+                                justify-content: center
+                                display: flex
+                                align-self: center
+                        .pill:hover
+                            box-shadow: 0 0 11px rgba(24,24,24,.2)
+                            width: 23.1px
+                            height: 23.1px
+                            span
+                                font-size: 20.1px
+
+                        span
+                            font-size: 13px
+                            font-weight: 800
+                            margin-left: 12px
+                            margin-right: 12px
+                    .footer-right
+                        align-self: flex-end
+                        .precio
+                            font-size: 16px
+                            font-weight: bold
+    .right-side
+        @media screen and (max-width: 560px)
+            display: none
+
+        .total
+            @include flex(null, center)
+            font-weight: 100
+            font-size: 36px
+        .total-label
+            @include flex(null, flex-start)
+            font-weight: 100
+            font-size: 36px
+        .cantidad
+            @include flex(null, center)
+            font-size: 13px
+            color: #787878
+            margin-top: 8px
+    .right-side-one
+        position: absolute
+        margin-top: 100px
+        margin-left: 350px
+        .total
+            @include flex(null, center)
+            font-weight: 100
+            font-size: 36px
+        .total-label
+            @include flex(null, flex-start)
+            font-weight: 100
+            font-size: 36px
+        .cantidad
+            @include flex(null, center)
+            font-size: 13px
+            color: #787878
+            margin-top: 8px
+.mat-dialog-footer
+    width: 100%
+    @include flex(row, flex-end)
+    button
+        margin-right: 16px
+
+.total-bottom
+    display: none
+    padding-right: 1rem
+    @media screen and (max-width: 560px)
+        display: block

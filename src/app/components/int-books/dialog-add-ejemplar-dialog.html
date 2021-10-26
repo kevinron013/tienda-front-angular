@@ -1,0 +1,61 @@
+<style>
+  .invalid-feedback {
+    display: block;
+  }
+</style>
+<h1 mat-dialog-title>Agregar ejemplares para: {{ data.titulo }}</h1>
+<form [formGroup]="dynamicForm">
+  <div mat-dialog-content>
+    <mat-form-field style="width: 100%;">
+      <mat-label>Cantidad de ejemplares</mat-label>
+      <input
+        matInput
+        type="number"
+        formControlName="nEjemplares"
+        placeholder="Ingrese la cantidad de ejemplares que desea agregar"
+        (change)="createForm($event)"
+        [ngClass]="{ 'is-invalid': submitted && f.nEjemplares.errors }"
+      />
+      <div *ngIf="submitted && f.nEjemplares.errors" class="invalid-feedback">
+        <div *ngIf="f.nEjemplares.errors.required">
+          Este campo es requerido
+        </div>
+      </div>
+    </mat-form-field>
+    <div *ngFor="let ejemplar of e.controls; let i = index">
+      <div [formGroup]="ejemplar">
+        <mat-form-field style="width: 100%;">
+          <mat-label> Ejemplar {{ i + 1 }} SKU: </mat-label>
+          <input
+            type="text"
+            formControlName="sku"
+            matInput
+            [ngClass]="{
+              'is-invalid': submitted && ejemplar.controls.sku.errors
+            }"
+          />
+          <div
+            *ngIf="submitted && ejemplar.controls.sku.errors"
+            class="invalid-feedback"
+          >
+            <div *ngIf="ejemplar.controls.sku.errors.required">
+              SKU es requerido
+            </div>
+          </div>
+        </mat-form-field>
+      </div>
+    </div>
+  </div>
+  <div mat-dialog-actions>
+    <button
+      mat-button
+      type="submit"
+      cdkFocusInitial
+      [mat-dialog-close]="f.nEjemplares.value"
+      (click)="onSubmit(dynamicForm)"
+    >
+      Guardar
+    </button>
+    <button mat-button (click)="onNoClick()">Cancelar</button>
+  </div>
+</form>

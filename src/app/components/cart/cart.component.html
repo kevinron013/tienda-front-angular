@@ -1,0 +1,57 @@
+<h1 mat-dialog-title>Mi Carrito</h1>
+<h2 class="no-products" *ngIf="prodCantidad === 0">Tu carrito está vacío</h2>
+<div mat-dialog-content *ngIf="prodCantidad !== 0">
+  <div class="cart-component">
+    <div class="left-side">
+      <ul class="cart-list">
+        <li
+          *ngFor="let ejemplar of ejemplares; let i = index"
+          class="cart-card"
+        >
+          <div class="cart-card__top">
+            {{ ejemplar.libro.titulo }}
+          </div>
+          <div class="cart-card__body">
+            <img
+              src="{{ ejemplar.libro.portada.url }}"
+              alt="{{ ejemplar.libro.portada.nombrePortada }}"
+              class="portada"
+            />
+          </div>
+          <div class="cart-card__footer">
+            <div class="footer-left">
+              <div class="pill">
+                <span class="less" (click)="removeEjemplar(ejemplar)">-</span>
+              </div>
+              <span>{{ ejemplar.cantidad }}</span>
+              <div class="pill">
+                <span class="plus" (click)="addEjemplar(ejemplar)">+</span>
+              </div>
+            </div>
+            <div class="footer-right">
+              <span class="precio"> S/. {{ ejemplar.libro.precio }} </span>
+            </div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="right-side" *ngIf="ejemplares.length">
+      <span class="total-label">Total</span>
+      <span class="total">S/ {{ total }}</span>
+      <div class="cantidad">
+        <p>Productos: {{ prodCantidad }}</p>
+      </div>
+    </div>
+    <!-- <div class="right-side-one" *ngIf="ejemplares.length === 1">
+      <span class="total-label">Total</span>
+      <span class="total">S/. {{ total }}</span>
+      <div class="cantidad">
+        <p>Productos: {{ prodCantidad }}</p>
+      </div>
+    </div> -->
+  </div>
+</div>
+<div mat-dialog-actions class="mat-dialog-footer" *ngIf="prodCantidad !== 0">
+  <span class="total-bottom"> Total S/ {{ total }} </span>
+  <button mat-button (click)="openSaleCore()">Comprar</button>
+</div>

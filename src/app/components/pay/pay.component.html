@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Chaofan - Checkout</title>
+  </head>
+  <body>
+    <div class="app">
+      <div >
+        <div class="logo-wrapper">
+          <img src="../../../assets/pay/niubiz.png" alt="niubiz" />
+        </div>
+        <div class="form-checkout">
+          <div class="input-field">
+            <input
+              type="tel"
+              id="cardNumber"
+              pattern="[0-9\-]+"
+              placeholder="Número de Tarjeta"
+              autocomplete="cc-number"
+              inputmode="numeric"
+            />
+          </div>
+          <div class="app-checkout__row">
+            <div class="input-field">
+              <input
+                type="text"
+                required
+                pattern="(?:0[1-9]|1[0-2])/[0-9]{2}"
+                maxlength="5"
+                minlength="5"
+                placeholder="MM/AA"
+              />
+            </div>
+            <div class="input-field">
+              <input
+                type="text"
+                required
+                pattern="\d*"
+                maxlength="3"
+                minlength="3"
+                placeholder="CVV"
+              />
+            </div>
+          </div>
+          <div class="app-checkout__row">
+            <div class="input-field">
+              <input type="text" required placeholder="Nombre" />
+            </div>
+            <div class="input-field">
+              <input type="text" required placeholder="Apellido" />
+            </div>
+          </div>
+          <div class="input-field">
+            <input
+              type="email"
+              pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,4}$"
+              placeholder="Email"
+            />
+          </div>
+          <button class="app-btn checkout">Pagar S/ {{subtotal}}</button>
+        </div>
+        <div class="checkout-payments">
+          <img
+            src="../../../assets/pay/pci-dss.png"
+            alt="pci"
+            width="120"
+            height="55"
+          />
+          <img
+            src="../../../assets/pay/visa.png"
+            alt="visa"
+            width="35"
+            height="25"
+          />
+          <img
+            src="../../../assets/pay/mastercard.png"
+            alt="mastercard"
+            width="32"
+            height="25"
+          />
+          <img
+            src="../../../assets/pay/dinersclub.png"
+            alt="diners"
+            width="32"
+            height="25"
+          />
+          <img
+            src="../../../assets/pay/american-express.png"
+            alt="american"
+            width="35"
+            height="25"
+          />
+        </div>
+      </div>
+    </div>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+    
+  </body>
+</html>

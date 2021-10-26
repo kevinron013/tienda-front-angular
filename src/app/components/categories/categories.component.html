@@ -1,0 +1,11 @@
+<div class="wrapper">
+  <div class="categories-container">
+    <div class="category" *ngFor="let categoria of categorias; let i = index">
+      <mat-chip-list>
+        <mat-chip id="i_{{ i }}" (click)="filtrarLibros(categoria)">
+          {{ categoria.nombreCategoria }}
+        </mat-chip>
+      </mat-chip-list>
+    </div>
+  </div>
+</div>

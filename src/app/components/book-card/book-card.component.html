@@ -1,0 +1,15 @@
+<div class="card-container">
+  <img mat-card-image src="{{ ejemplar.libro.portada.url }}" (click)="openDetail()"/>
+  <div class="info" id="{{ ejemplar.ejemplarID }}">
+    <div class="id">
+      <p>{{ ejemplar.libro.titulo }}</p>
+      <span>{{ ejemplar.libro.autor }}</span>
+    </div>
+    <span>S/ {{ ejemplar.libro.precio }}</span>
+  </div>
+  <div class="actions-wrapper">
+    <button (click)="addToCart(ejemplar)">
+      Agregar al carrito <i class="fa fa-cart-plus" aria-hidden="true"></i>
+    </button>
+  </div>
+</div>
